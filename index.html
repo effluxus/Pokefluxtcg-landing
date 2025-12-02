@@ -4,63 +4,160 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Pokéflux TCG - Pokémon breaks & sealed product</title>
-  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Using jsDelivr CDN instead of official Tailwind CDN -->
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@3.3.3/dist/tailwind.min.css" rel="stylesheet">
   <style>
-    .light-mode { --bg-color: #ffffff; --text-color: #111827; }
-    .dark-mode { --bg-color: #111827; --text-color: #f3f4f6; }
-    body { background-color: var(--bg-color); color: var(--text-color); transition: all 0.3s ease; }
+    .light-mode { 
+      --bg-color: #ffffff; 
+      --text-color: #111827; 
+      background-color: #ffffff; 
+      color: #111827; 
+    }
+    .dark-mode { 
+      --bg-color: #111827; 
+      --text-color: #f3f4f6; 
+      background-color: #111827; 
+      color: #f3f4f6; 
+    }
+    body { 
+      background-color: var(--bg-color); 
+      color: var(--text-color); 
+      transition: all 0.3s ease; 
+    }
     a, button { transition: background 0.3s ease, color 0.3s ease; }
+    
+    /* Fallback styles in case Tailwind doesn't load */
+    .btn {
+      display: inline-block;
+      padding: 12px 32px;
+      background-color: #4f46e5;
+      color: white;
+      border-radius: 12px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 18px;
+    }
+    .btn:hover {
+      background-color: #4338ca;
+    }
+    .toggle-btn {
+      position: fixed;
+      top: 16px;
+      right: 16px;
+      padding: 8px 16px;
+      background-color: #4f46e5;
+      color: white;
+      border-radius: 12px;
+      border: none;
+      cursor: pointer;
+      z-index: 50;
+    }
+    .toggle-btn:hover {
+      background-color: #4338ca;
+    }
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+    .section {
+      padding: 80px 20px;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(1, 1fr);
+      gap: 40px;
+    }
+    @media (min-width: 768px) {
+      .grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+    .card {
+      border: 1px solid #d1d5db;
+      border-radius: 16px;
+      padding: 20px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+    .card-image {
+      height: 192px;
+      background-color: #e5e7eb;
+      border-radius: 12px;
+      margin-bottom: 16px;
+    }
+    h1 {
+      font-size: 48px;
+      font-weight: bold;
+      margin-bottom: 16px;
+    }
+    h2 {
+      font-size: 36px;
+      font-weight: bold;
+      margin-bottom: 16px;
+    }
+    h3 {
+      font-size: 24px;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+    p {
+      font-size: 18px;
+      line-height: 1.6;
+      margin-bottom: 24px;
+    }
   </style>
 </head>
 <body class="dark-mode font-sans">
 
   <!-- Light/Dark Mode Toggle -->
-  <div class="fixed top-4 right-4 z-50">
-    <button id="toggle-mode" class="px-4 py-2 bg-indigo-600 text-white rounded-xl hover:bg-indigo-700">Toggle Mode</button>
+  <div>
+    <button id="toggle-mode" class="toggle-btn">Toggle Mode</button>
   </div>
 
   <!-- Hero Section -->
   <section class="min-h-screen flex flex-col items-center justify-center px-6 text-center">
     <h1 class="text-5xl font-bold mb-4 tracking-tight">Pokéflux TCG</h1>
     <p class="text-lg max-w-xl mb-6">Pokémon breaks & sealed product — live pulls, rare hits, and community fun.</p>
-    <a href="#shop" class="px-8 py-3 bg-indigo-600 hover:bg-indigo-700 rounded-xl text-lg font-semibold">Shop Now</a>
+    <a href="#shop" class="btn">Shop Now</a>
   </section>
 
   <!-- About Section -->
-  <section class="py-20 px-6" id="about">
-    <div class="max-w-4xl mx-auto text-center">
-      <h2 class="text-3xl font-bold mb-4">What is Pokéflux TCG?</h2>
-      <p class="text-lg leading-relaxed">
+  <section class="section" id="about">
+    <div class="container text-center">
+      <h2>What is Pokéflux TCG?</h2>
+      <p class="text-lg leading-relaxed max-w-4xl mx-auto">
         Pokéflux TCG brings you clean, trustworthy Pokémon card breaks and sealed product drops. Each live break is transparent, fun, and fair, with rare pulls and community engagement.
       </p>
     </div>
   </section>
 
   <!-- Shop Preview -->
-  <section class="py-20 px-6" id="shop">
-    <div class="max-w-5xl mx-auto text-center mb-10">
-      <h2 class="text-3xl font-bold mb-4">Available Products</h2>
-      <p class="text-gray-400">Pokémon-only products for now — more TCGs coming soon.</p>
+  <section class="section" id="shop">
+    <div class="container text-center mb-10">
+      <h2>Available Products</h2>
+      <p class="text-gray-500">Pokémon-only products for now — more TCGs coming soon.</p>
     </div>
 
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-10 max-w-5xl mx-auto">
-      <div class="rounded-2xl p-5 shadow-lg border border-gray-300">
-        <div class="h-48 bg-gray-200 dark:bg-gray-700 rounded-xl mb-4 flex items-center justify-center text-gray-500"></div>
-        <h3 class="text-xl font-semibold mb-2"></h3>
-        <p class="mb-4"></p>
-        <button class="w-full py-2 bg-indigo-600 hover:bg-indigo-700 rounded-xl font-semibold">Buy</button>
-      </div>
-      <div class="rounded-2xl p-5 shadow-lg border border-gray-300">
-        <div class="h-48 bg-gray-200 dark:bg-gray-700 rounded-xl mb-4 flex items-center justify-center text-gray-500"></div>
-        <h3 class="text-xl font-semibold mb-2"></h3>
-        <p class="mb-4"></p>
-        <button class="w-full py-2 bg-indigo-600 hover:bg-indigo-700 rounded-xl font-semibold">Buy</button>
-      </div>
-      <div class="rounded-2xl p-5 shadow-lg border border-gray-300">
-        <div class="h-48 bg-gray-200 dark:bg-gray-700 rounded-xl mb-4 flex items-center justify-center text-gray-500"></div>
-        <h3 class="text-xl font-semibold mb-2"></h3>
-        <p class="mb-4"></p>
-        <button class="w-full py-2 bg-indigo-600 hover:bg-indigo-700 rounded-xl font-semibold">Buy</button>
+    <div class="container">
+      <div class="grid">
+        <div class="card">
+          <div class="card-image"></div>
+          <h3>Pokémon Booster Box</h3>
+          <p>Sealed booster boxes from the latest sets.</p>
+          <button class="w-full py-2 bg-indigo-600 hover:bg-indigo-700 rounded-xl font-semibold">Buy</button>
+        </div>
+        <div class="card">
+          <div class="card-image"></div>
+          <h3>Break Spots</h3>
+          <p>Join live breaks for a chance at rare pulls.</p>
+          <button class="w-full py-2 bg-indigo-600 hover:bg-indigo-700 rounded-xl font-semibold">Buy</button>
+        </div>
+        <div class="card">
+          <div class="card-image"></div>
+          <h3>Elite Trainer Boxes</h3>
+          <p>Complete sets with sleeves, dice, and more.</p>
+          <button class="w-full py-2 bg-indigo-600 hover:bg-indigo-700 rounded-xl font-semibold">Buy</button>
+        </div>
       </div>
     </div>
   </section>
